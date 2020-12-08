@@ -1,0 +1,17 @@
+button {
+  border-radius: 3px;
+  background-color: cornflowerblue;
+  text-align: center;
+  transition-duration: 0.4s;
+  font-size: 30px;
+  align-items: center;
+}
+button:hover {
+  background-color: gray;
+}
+
+section {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
