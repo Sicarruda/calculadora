@@ -16,7 +16,9 @@ function resetarConta() {
 //Essa função adiciona os números clicados pelo usuário em um array.
 function adicionarNumeroLista(numero) {
   listaNumeros.push(numero);
+  exibeResposta.innerHTML = listaNumeros.join("")
 }
+
 /*A função convertendoNumeroLista converte os números unitarios clicados pelo usuário em um 
 unico número guardando esse valor em outro array. */
 function convertendoNumeroLista() {
