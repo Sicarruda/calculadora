@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
+
     <link href="index.css" rel="stylesheet" type="text/css" />
     <title>Calculadora</title>
   </head>
@@ -13,13 +15,8 @@
       <span class="resposta"> resposta </span>
     </section>
     <section id="operacoes">
-      <button
-        value="somar"
-        id="somar"
-        onclick="adicionarOperadores(document.getElementById('somar').value)"
-      >
-        +
-      </button>
+      <button value="reset" id="reset" onclick="resetarConta()">C</button>
+      
       <button
         value="subtrair"
         id="subtrair"
@@ -44,11 +41,11 @@
     </section>
     <section id="coluna1">
       <button
-        value="9"
-        id="9"
-        onclick="adicionarNumeroLista(document.getElementById('9').value)"
+        value="7"
+        id="7"
+        onclick="adicionarNumeroLista(document.getElementById('7').value)"
       >
-        9
+        7
       </button>
       <button
         value="8"
@@ -58,20 +55,20 @@
         8
       </button>
       <button
-        value="7"
-        id="7"
-        onclick="adicionarNumeroLista(document.getElementById('7').value)"
+        value="9"
+        id="9"
+        onclick="adicionarNumeroLista(document.getElementById('9').value)"
       >
-        7
+        9
       </button>
     </section>
     <section id="coluna2">
       <button
-        value="6"
-        id="6"
-        onclick="adicionarNumeroLista(document.getElementById('6').value)"
+        value="4"
+        id="4"
+        onclick="adicionarNumeroLista(document.getElementById('4').value)"
       >
-        6
+        4
       </button>
       <button
         value="5"
@@ -81,20 +78,20 @@
         5
       </button>
       <button
-        value="4"
-        id="4"
-        onclick="adicionarNumeroLista(document.getElementById('4').value)"
+        value="6"
+        id="6"
+        onclick="adicionarNumeroLista(document.getElementById('6').value)"
       >
-        4
+        6
       </button>
     </section>
     <section id="coluna3">
       <button
-        value="3"
-        id="3"
-        onclick="adicionarNumeroLista(document.getElementById('3').value)"
+        value="1"
+        id="1"
+        onclick="adicionarNumeroLista(document.getElementById('1').value)"
       >
-        3
+        1
       </button>
       <button
         value="2"
@@ -104,17 +101,14 @@
         2
       </button>
       <button
-        value="1"
-        id="1"
-        onclick="adicionarNumeroLista(document.getElementById('1').value)"
+        value="3"
+        id="3"
+        onclick="adicionarNumeroLista(document.getElementById('3').value)"
       >
-        1
+        3
       </button>
     </section>
     <section id="coluna4">
-      
-      <button value="reset" id="reset" onclick="resetarConta()">C</button>
-
       <button
         value="0"
         id="0"
@@ -128,6 +122,13 @@
         onclick="adicionarOperadores(document.getElementById('resultado').value)"
       >
         =
+      </button>
+      <button
+        value="somar"
+        id="somar"
+        onclick="adicionarOperadores(document.getElementById('somar').value)"
+      >
+        +
       </button>
     </section>
     <script src="index.js"></script>
