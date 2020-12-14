@@ -30,87 +30,115 @@ unico número guardando esse valor em outro array. */
 function convertendoNumeroLista() {
   var stringElementoNumerico;
   var elementoNumerico;
-  stringElementoNumerico = listaNumeros.join("");
-  elementoNumerico = parseInt(stringElementoNumerico);
-  listaNumeros = [];
-  return elementoNumerico;
+  if (numeroNegativo == false) {
+    stringElementoNumerico = listaNumeros.join("");
+    elementoNumerico = parseFloat(stringElementoNumerico);
+    listaNumeros = [];
+    return elementoNumerico;
+  } else {
+    stringElementoNumerico = listaNumeros.join("");
+    elementoNumerico = parseFloat(stringElementoNumerico);
+    listaNumeros = [];
+    elementoNumerico = elementoNumerico * -1;
+  
+    return elementoNumerico;
+  }
 }
 /*A função adicionarOperador adiciona a conta o operador selecionado pelo usuário, chama a 
 função convertendoNumeroLista para obter a as duas primeiras partes da operação.*/
 function adicionarOperadores(operador) {
   listaNumerosConvertidos.push(convertendoNumeroLista());
+
+  if (isNaN(listaNumerosConvertidos[0])) {
+    listaNumerosConvertidos.splice(0, 1);
+  } else if (isNaN(listaNumerosConvertidos[1])) {
+    listaNumerosConvertidos.splice(1, 1);
+  }
+
   fazerConta(listaNumerosConvertidos);
+
   if (operador === "somar") {
     operadorNumerico = operador;
-  } else if (operador === "subtrair") {
-    operadorNumerico = operador;
-    // fazerContaNumeroNegativo();
+    numeroNegativo = false;
+  }//FAZER - arrumar como a conta simples de -5-5 é feita não está saindo certo
+   else if (operador === "subtrair") {
+    if (listaNumerosConvertidos.length == 0) {
+      numeroNegativo = true;
+    } else if (operadorNumerico !== "subtrair" && operadorNumerico !== null) {
+      numeroNegativo == true;
+    } else {
+      operadorNumerico = operador;
+      numeroNegativo = true;
+    }
   } else if (operador === "dividir") {
     operadorNumerico = operador;
+    numeroNegativo = false;
   } else if (operador === "multiplicar") {
     operadorNumerico = operador;
+    numeroNegativo = false;
   } else if (operador === "resultado") {
     operadorNumerico = null;
-  }
-  // FazerContaNumeroNegativo();
-  if (numeroNegativo == true && listaNumerosConvertidos.length == 1) {
-    listaNumerosConvertidos.push(listaNumerosConvertidos[0] * -1);
-    listaNumerosConvertidos.splice(0, 1);
     numeroNegativo = false;
   }
-  if (listaNumerosConvertidos.length == 1) {
-    numeroNegativo = true;
-    listaNumerosConvertidos = [];
-    operadorNumerico = null;
-  }
 }
+
 /*A função fazerConta encerra o processo chamando novamente a função convertendoNumeroLista
 para obter a segunda seguencia numerica e poder fazer a respeciva conta solicitada pelo
 usuário.*/
 function fazerConta(arrayNumeros) {
-  if (listaNumerosConvertidos.length == 2) {
+  if (listaNumerosConvertidos.length == 2 && numeroNegativo == false) {
     if (operadorNumerico === "somar") {
       conta = arrayNumeros[0] + arrayNumeros[1];
+      console.log(conta)
       exibeResposta.innerHTML =
         arrayNumeros[0] + " + " + arrayNumeros[1] + " = " + conta;
       listaNumerosConvertidos.splice(0, 2);
-
       return conta;
     } else if (operadorNumerico === "subtrair") {
       conta = arrayNumeros[0] - arrayNumeros[1];
       exibeResposta.innerHTML =
         arrayNumeros[0] + " - " + arrayNumeros[1] + " = " + conta;
       listaNumerosConvertidos.splice(0, 2);
-
       return conta;
     } else if (operadorNumerico === "dividir") {
       conta = arrayNumeros[0] / arrayNumeros[1];
       exibeResposta.innerHTML =
         arrayNumeros[0] + " ÷ " + arrayNumeros[1] + " = " + conta;
       listaNumerosConvertidos.splice(0, 2);
-
       return conta;
     } else if (operadorNumerico === "multiplicar") {
       conta = arrayNumeros[0] * arrayNumeros[1];
       exibeResposta.innerHTML =
         arrayNumeros[0] + " x " + arrayNumeros[1] + " = " + conta;
       listaNumerosConvertidos.splice(0, 2);
-
+      return conta;
+    }
+  }
+  if (listaNumerosConvertidos.length == 2 && numeroNegativo == true) {
+    if (operadorNumerico === "somar") {
+      conta = arrayNumeros[0] + arrayNumeros[1];
+      exibeResposta.innerHTML =
+        arrayNumeros[0] + " + " + "(" + arrayNumeros[1] + ")" + " = " + conta;
+      listaNumerosConvertidos.splice(0, 2);
+      return conta;
+    } else if (operadorNumerico === "subtrair") {
+      conta = arrayNumeros[0] - arrayNumeros[1];
+      exibeResposta.innerHTML =
+        arrayNumeros[0] + " - " + "(" + arrayNumeros[1] + ")" + " = " + conta;
+      listaNumerosConvertidos.splice(0, 2);
+      return conta;
+    } else if (operadorNumerico === "dividir") {
+      conta = arrayNumeros[0] / arrayNumeros[1];
+      exibeResposta.innerHTML =
+        arrayNumeros[0] + " ÷ " + "(" + arrayNumeros[1] + ")" + " = " + conta;
+      listaNumerosConvertidos.splice(0, 2);
+      return conta;
+    } else if (operadorNumerico === "multiplicar") {
+      conta = arrayNumeros[0] * arrayNumeros[1];
+      exibeResposta.innerHTML =
+        arrayNumeros[0] + " x " + "(" + arrayNumeros[1] + ")" + " = " + conta;
+      listaNumerosConvertidos.splice(0, 2);
       return conta;
     }
   }
 }
-//Função para fazer contas com dois numeros negativos
-
-// function FazerContaNumeroNegativo() {
-  // if (numeroNegativo == true && listaNumerosConvertidos.length == 1) {
-    // listaNumerosConvertidos.push(listaNumerosConvertidos[0] * -1);
-    // listaNumerosConvertidos.splice(0, 1);
-    // numeroNegativo = false;
-  // }
-  // if (listaNumerosConvertidos.length == 1) {
-    // numeroNegativo = true;
-    // listaNumerosConvertidos = [];
-    // operadorNumerico = null;
-  // }
-// }
