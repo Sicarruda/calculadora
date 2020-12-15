@@ -12,6 +12,7 @@ function resetarConta() {
   listaNumerosConvertidos = [];
   operadorNumerico = null;
   exibeResposta.innerHTML = 0;
+  numeroNegativo = false
 }
 
 //Essa função adiciona os números clicados pelo usuário em um array.
@@ -40,7 +41,7 @@ function convertendoNumeroLista() {
     elementoNumerico = parseFloat(stringElementoNumerico);
     listaNumeros = [];
     elementoNumerico = elementoNumerico * -1;
-  
+
     return elementoNumerico;
   }
 }
@@ -60,15 +61,15 @@ function adicionarOperadores(operador) {
   if (operador === "somar") {
     operadorNumerico = operador;
     numeroNegativo = false;
-  }//FAZER - arrumar como a conta simples de -5-5 é feita não está saindo certo
-   else if (operador === "subtrair") {
+  } 
+  else if (operador === "subtrair") {
     if (listaNumerosConvertidos.length == 0) {
       numeroNegativo = true;
     } else if (operadorNumerico !== "subtrair" && operadorNumerico !== null) {
-      numeroNegativo == true;
+      numeroNegativo = true;
     } else {
       operadorNumerico = operador;
-      numeroNegativo = true;
+      numeroNegativo = false;
     }
   } else if (operador === "dividir") {
     operadorNumerico = operador;
@@ -77,68 +78,60 @@ function adicionarOperadores(operador) {
     operadorNumerico = operador;
     numeroNegativo = false;
   } else if (operador === "resultado") {
-    operadorNumerico = null;
-    numeroNegativo = false;
+    if (listaNumerosConvertidos.length == 2) {
+      operadorNumerico = null;
+      numeroNegativo = false;
+      listaNumerosConvertidos.splice(0, 2);
+    }
   }
 }
 
-/*A função fazerConta encerra o processo chamando novamente a função convertendoNumeroLista
-para obter a segunda seguencia numerica e poder fazer a respeciva conta solicitada pelo
+/*A função fazerConta faz a conta solicitada pelo
 usuário.*/
 function fazerConta(arrayNumeros) {
   if (listaNumerosConvertidos.length == 2 && numeroNegativo == false) {
     if (operadorNumerico === "somar") {
       conta = arrayNumeros[0] + arrayNumeros[1];
-      console.log(conta)
       exibeResposta.innerHTML =
         arrayNumeros[0] + " + " + arrayNumeros[1] + " = " + conta;
-      listaNumerosConvertidos.splice(0, 2);
-      return conta;
     } else if (operadorNumerico === "subtrair") {
       conta = arrayNumeros[0] - arrayNumeros[1];
       exibeResposta.innerHTML =
         arrayNumeros[0] + " - " + arrayNumeros[1] + " = " + conta;
-      listaNumerosConvertidos.splice(0, 2);
-      return conta;
     } else if (operadorNumerico === "dividir") {
       conta = arrayNumeros[0] / arrayNumeros[1];
       exibeResposta.innerHTML =
         arrayNumeros[0] + " ÷ " + arrayNumeros[1] + " = " + conta;
-      listaNumerosConvertidos.splice(0, 2);
-      return conta;
     } else if (operadorNumerico === "multiplicar") {
       conta = arrayNumeros[0] * arrayNumeros[1];
       exibeResposta.innerHTML =
         arrayNumeros[0] + " x " + arrayNumeros[1] + " = " + conta;
-      listaNumerosConvertidos.splice(0, 2);
-      return conta;
     }
+    listaNumerosConvertidos.push(conta);
+    listaNumerosConvertidos.splice(0, 2);
+    operadorNumerico = null;
   }
+  
   if (listaNumerosConvertidos.length == 2 && numeroNegativo == true) {
     if (operadorNumerico === "somar") {
       conta = arrayNumeros[0] + arrayNumeros[1];
       exibeResposta.innerHTML =
         arrayNumeros[0] + " + " + "(" + arrayNumeros[1] + ")" + " = " + conta;
-      listaNumerosConvertidos.splice(0, 2);
-      return conta;
     } else if (operadorNumerico === "subtrair") {
       conta = arrayNumeros[0] - arrayNumeros[1];
       exibeResposta.innerHTML =
         arrayNumeros[0] + " - " + "(" + arrayNumeros[1] + ")" + " = " + conta;
-      listaNumerosConvertidos.splice(0, 2);
-      return conta;
     } else if (operadorNumerico === "dividir") {
       conta = arrayNumeros[0] / arrayNumeros[1];
       exibeResposta.innerHTML =
         arrayNumeros[0] + " ÷ " + "(" + arrayNumeros[1] + ")" + " = " + conta;
-      listaNumerosConvertidos.splice(0, 2);
-      return conta;
     } else if (operadorNumerico === "multiplicar") {
       conta = arrayNumeros[0] * arrayNumeros[1];
       exibeResposta.innerHTML =
         arrayNumeros[0] + " x " + "(" + arrayNumeros[1] + ")" + " = " + conta;
-      listaNumerosConvertidos.splice(0, 2);
-      return conta;
     }
+    listaNumerosConvertidos.push(conta);
+    listaNumerosConvertidos.splice(0, 2);
+    operadorNumerico = null;
   }
 }
