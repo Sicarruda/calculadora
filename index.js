@@ -4,7 +4,6 @@ var listaNumerosConvertidos = [];
 var conta;
 var exibeResposta = document.getElementById("resposta");
 var numeroNegativo = false;
-
 //Reseta todos os parametros para que a conta comece do zero
 function resetarConta() {
   listaNumeros = [];
@@ -12,7 +11,7 @@ function resetarConta() {
   listaNumerosConvertidos = [];
   operadorNumerico = null;
   exibeResposta.innerHTML = 0;
-  numeroNegativo = false
+  numeroNegativo = false;
 }
 
 //Essa função adiciona os números clicados pelo usuário em um array.
@@ -61,8 +60,7 @@ function adicionarOperadores(operador) {
   if (operador === "somar") {
     operadorNumerico = operador;
     numeroNegativo = false;
-  } 
-  else if (operador === "subtrair") {
+  } else if (operador === "subtrair") {
     if (listaNumerosConvertidos.length == 0) {
       numeroNegativo = true;
     } else if (operadorNumerico !== "subtrair" && operadorNumerico !== null) {
@@ -86,8 +84,7 @@ function adicionarOperadores(operador) {
   }
 }
 
-/*A função fazerConta faz a conta solicitada pelo
-usuário.*/
+/*A função fazerConta faz a conta solicitada pelo usuário.*/
 function fazerConta(arrayNumeros) {
   if (listaNumerosConvertidos.length == 2 && numeroNegativo == false) {
     if (operadorNumerico === "somar") {
@@ -111,7 +108,7 @@ function fazerConta(arrayNumeros) {
     listaNumerosConvertidos.splice(0, 2);
     operadorNumerico = null;
   }
-  
+
   if (listaNumerosConvertidos.length == 2 && numeroNegativo == true) {
     if (operadorNumerico === "somar") {
       conta = arrayNumeros[0] + arrayNumeros[1];
@@ -135,3 +132,58 @@ function fazerConta(arrayNumeros) {
     operadorNumerico = null;
   }
 }
+/* Evento keydown ouve o teclado e devolve para o usuário na tela como se ele estivesse clicando os botoẽs
+Fazer - arrumar / porque o farefox utiliza como tecla de atalho e impede o uso na calculadora*/
+document.addEventListener("keydown", function (event) {
+  if (event.key === "1") {
+    adicionarNumeroLista("1");
+  }
+  if (event.key === "2") {
+    adicionarNumeroLista("2");
+  }
+  if (event.key === "3") {
+    adicionarNumeroLista("3");
+  }
+  if (event.key === "4") {
+    adicionarNumeroLista("4");
+  }
+  if (event.key === "5") {
+    adicionarNumeroLista("5");
+  }
+  if (event.key === "6") {
+    adicionarNumeroLista("6");
+  }
+  if (event.key === "7") {
+    adicionarNumeroLista("7");
+  }
+  if (event.key === "8") {
+    adicionarNumeroLista("8");
+  }
+  if (event.key === "9") {
+    adicionarNumeroLista("9");
+  }
+  if (event.key === "0") {
+    adicionarNumeroLista("0");
+  }
+  if (event.key === "," || event.key === ".") {
+    adicionarNumeroLista(".");
+  }
+  if (event.key === "+") {
+    adicionarOperadores("somar");
+  }
+  if (event.key === "-") {
+    adicionarOperadores("subtrair");
+  }
+  if (event.key === "*") {
+    adicionarOperadores("multiplicar");
+  }
+  if (event.key === "/") {
+    adicionarOperadores("dividir");
+  }
+  if (event.key === "Backspace") {
+    resetarConta();
+  }
+  if (event.key === "Enter") {
+    adicionarOperadores("resultado");
+  }
+});
