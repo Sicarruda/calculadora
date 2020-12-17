@@ -132,58 +132,29 @@ function fazerConta(arrayNumeros) {
     operadorNumerico = null;
   }
 }
-/* Evento keydown ouve o teclado e devolve para o usuário na tela como se ele estivesse clicando os botoẽs
-Fazer - arrumar / porque o farefox utiliza como tecla de atalho e impede o uso na calculadora*/
+// Evento keydown ouve o teclado e devolve para o usuário na tela como se ele estivesse clicando os botoẽs
+
 document.addEventListener("keydown", function (event) {
-  if (event.key === "1") {
-    adicionarNumeroLista("1");
-  }
-  if (event.key === "2") {
-    adicionarNumeroLista("2");
-  }
-  if (event.key === "3") {
-    adicionarNumeroLista("3");
-  }
-  if (event.key === "4") {
-    adicionarNumeroLista("4");
-  }
-  if (event.key === "5") {
-    adicionarNumeroLista("5");
-  }
-  if (event.key === "6") {
-    adicionarNumeroLista("6");
-  }
-  if (event.key === "7") {
-    adicionarNumeroLista("7");
-  }
-  if (event.key === "8") {
-    adicionarNumeroLista("8");
-  }
-  if (event.key === "9") {
-    adicionarNumeroLista("9");
-  }
-  if (event.key === "0") {
-    adicionarNumeroLista("0");
-  }
-  if (event.key === "," || event.key === ".") {
-    adicionarNumeroLista(".");
-  }
   if (event.key === "+") {
-    adicionarOperadores("somar");
-  }
-  if (event.key === "-") {
-    adicionarOperadores("subtrair");
-  }
-  if (event.key === "*") {
-    adicionarOperadores("multiplicar");
-  }
-  if (event.key === "/") {
-    adicionarOperadores("dividir");
-  }
-  if (event.key === "Backspace") {
-    resetarConta();
-  }
-  if (event.key === "Enter") {
-    adicionarOperadores("resultado");
+    document.getElementById("somar").click();
+  } else if (event.key === "-") {
+    document.getElementById("subtrair").click();
+  } else if (event.key === "*") {
+    document.getElementById("multiplicar").click();
+  } else if (event.key === "/") {
+    pararQuickFind(event);
+    document.getElementById("dividir").click();
+  } else if (event.key === "Backspace") {
+    document.getElementById("reset").click();
+  } else if (event.key === "Enter") {
+    document.getElementById("resultado").click();
+  } else if (event.key === "," || event.key === ".") {
+    document.getElementById("virgula").click();
+  } else {
+    document.getElementById(event.key).click();
   }
 });
+
+function pararQuickFind(event) {
+  event.preventDefault();
+}
